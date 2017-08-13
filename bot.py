@@ -22,6 +22,8 @@ language governing permissions and limitations under the License.
 
 """
 
+import os
+
 from flask import Flask, request, Response
 from kik import KikApi, Configuration
 from kik.messages import messages_from_json, TextMessage, PictureMessage, \
@@ -161,10 +163,10 @@ class KikBot(Flask):
 
 if __name__ == "__main__":
     """ Main program """
-    kik = KikApi('BOT_USERNAME_HERE', 'BOT_API_KEY_HERE')
+    kik = KikApi('kritibot', '89cd34b3-1467-400e-8036-f97bb6fb7650')
     # For simplicity, we're going to set_configuration on startup. However, this really only needs to happen once
     # or if the configuration changes. In a production setting, you would only issue this call if you need to change
     # the configuration, and not every time the bot starts.
-    kik.set_configuration(Configuration(webhook='WEBHOOK_HERE'))
+    kik.set_configuration(Configuration(webhook='https://kik-botinteractive-k27mehta.c9users.io/incoming'))
     app = KikBot(kik, __name__)
-    app.run(port=8080, host='127.0.0.1', debug=True)
+    app.run(port=8080, host='0.0.0.0', debug=True)
